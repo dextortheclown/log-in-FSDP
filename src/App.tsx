@@ -3,28 +3,36 @@ import { Html5QrcodeScanner } from "html5-qrcode";
 
 export default function QRScanner() {
   // Callback function for successful QR code scan
-
   const onScanSuccess = (decodedText: string): void => {
     console.log(`Scanned code: ${decodedText}`);
     // Redirect or send request to the ATM server here
-    window.location.href = decodedText; 
+    window.location.href = decodedText;
   };
 
   // Initialize QR scanner
   useEffect(() => {
-    const scanner = new Html5QrcodeScanner("qr-reader", {
-      fps: 10,
-      qrbox: { width: 250, height: 250 },
-    }, false);
-    scanner.render(onScanSuccess, (errorMessage) => {
-      console.error(`QR Code scan error: ${errorMessage}`);
-    });
+    const scanner = new Html5QrcodeScanner(
+      "qr-reader",
+      {
+        fps: 10,
+        qrbox: { width: 250, height: 250 },
+      },
+      false // Disable verbose logging
+    );
+
+    // Render the scanner and handle errors
+    scanner.render(
+      onScanSuccess,
+      (errorMessage) => {
+        console.error(`QR Code scan error: ${errorMessage}`);
+      }
+    );
 
     // Clean up scanner when component unmounts
     return () => {
-      scanner.clear();
+      scanner.clear().catch(error => console.error("Failed to clear scanner", error));
     };
-  }, []);
+  }, []); // Only run on mount
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-100">
