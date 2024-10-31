@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import ocbcimg from "./assets/OCBC-Logo.png";
 import { Html5QrcodeScanner } from "html5-qrcode";
 
 export default function QRScanner() {
@@ -37,7 +38,7 @@ export default function QRScanner() {
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-100">
       <header className="w-full p-0 flex justify-between items-center">
-        <img src="./assets/OCBC-Logo.png" alt="OCBC Logo" className="h-22" />
+        <img src={ocbcimg} alt="OCBC Logo" className="h-22" />
         <button className="text-sm font-medium text-gray-500">Exit</button>
       </header>
 
