@@ -13,6 +13,8 @@ permissions:
 
 jobs:
   deploy:
+    environment: # This specifies the environment
+      name: github-pages
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -36,7 +38,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: './dist'  # Ensure this points to the correct build output folder
 
       - name: Deploy to GitHub Pages
         id: deployment
