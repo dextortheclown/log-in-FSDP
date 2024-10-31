@@ -7,7 +7,7 @@ export default function QRScanner() {
   const onScanSuccess = (decodedText: string): void => {
     console.log(`Scanned code: ${decodedText}`);
     // Redirect or send request to the ATM server here
-    window.location.href = decodedText; // or use fetch as needed
+    window.location.href = decodedText; 
   };
 
   // Initialize QR scanner
@@ -15,7 +15,7 @@ export default function QRScanner() {
     const scanner = new Html5QrcodeScanner("qr-reader", {
       fps: 10,
       qrbox: { width: 250, height: 250 },
-    }, false); // Add verbose argument
+    }, false);
     scanner.render(onScanSuccess, (errorMessage) => {
       console.error(`QR Code scan error: ${errorMessage}`);
     });
@@ -29,7 +29,7 @@ export default function QRScanner() {
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-100">
       <header className="w-full p-0 flex justify-between items-center">
-        <img src="/src/assets/OCBC-Logo.png" alt="OCBC Logo" className="h-22" />
+        <img src="./assets/OCBC-Logo.png" alt="OCBC Logo" className="h-22" />
         <button className="text-sm font-medium text-gray-500">Exit</button>
       </header>
 
