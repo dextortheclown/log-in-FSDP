@@ -1,13 +1,15 @@
 import { useEffect } from "react";
 import ocbcimg from "./assets/OCBC-Logo.png";
 import { Html5QrcodeScanner } from "html5-qrcode";
+import { useNavigate } from "react-router-dom";
 
 export default function QRScanner() {
+  const navigate = useNavigate();
   // Callback function for successful QR code scan
   const onScanSuccess = (decodedText: string): void => {
     console.log(`Scanned code: ${decodedText}`);
     // Redirect or send request to the ATM server here
-    window.location.href = decodedText;
+    navigate(`/success?code=${encodeURIComponent(decodedText)}`);
   };
 
   // Initialize QR scanner
